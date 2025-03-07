@@ -1,0 +1,7 @@
+ruler = ""
+i = 1
+
+while True:  # حلقه نامحدود
+    ruler += str(i) + " "
+    print(ruler)
+    i += 1
