@@ -1,0 +1,38 @@
+import cmath
+
+def solve_quadratic(a, b, c):
+    discriminant = b**2 - 4*a*c
+    root1 = (-b + cmath.sqrt(discriminant)) / (2 * a)
+    root2 = (-b - cmath.sqrt(discriminant)) / (2 * a)
+    return root1, root2, discriminant
+
+def main():
+    print("Welcome to the quadratic equation solver!")
+    
+    try:
+        a = float(input("Enter coefficient a (non-zero): "))
+        if a == 0:
+            print("Coefficient 'a' cannot be zero. Please try again.")
+            return
+        
+        b = float(input("Enter coefficient b: "))
+        c = float(input("Enter coefficient c: "))
+        
+        root1, root2, discriminant = solve_quadratic(a, b, c)
+        
+        print(f"\nRoot 1: {root1}")
+        print(f"Root 2: {root2}")
+
+        if discriminant > 0:
+            print("The roots are real and different.")
+        elif discriminant == 0:
+            print("The roots are real and the same.")
+        else:
+            print("The roots are imaginary.")
+            
+    except ValueError:
+        print("Invalid input. Please enter numeric values.")
+
+if __name__ == "__main__":
+    main()
+    
