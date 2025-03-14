@@ -1,0 +1,13 @@
+income = float(input("Enter your income: "))
+if income < 0:
+    rate = 0.00
+elif income < 1000:
+    rate = 0.10
+elif income < 10000:
+    rate = 0.15
+elif income < 100000:
+    rate = 0.23
+else:
+    rate = 0.30  
+tax = income * rate
+print(f"The tax on an income of {income} is: {tax}")
