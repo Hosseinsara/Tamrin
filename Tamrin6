@@ -1,0 +1,3 @@
+national_code = "4630024598"
+vector = list(national_code)
+print("national_code", vector)
