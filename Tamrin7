@@ -1,0 +1,21 @@
+import random
+
+def generate_random_national_code():
+
+      return ''.join(random.choices('0123456789', k=10))
+
+def create_national_code_matrix(rows, cols):
+
+ 
+
+    return [[generate_random_national_code() for _ in range(cols)] for _ in range(rows)]
+
+num_rows = 5  
+
+num_cols = 4 
+
+national_code_matrix = create_national_code_matrix(num_rows, num_cols)
+
+for row in national_code_matrix:
+
+    print(row)
