@@ -1,0 +1,13 @@
+filename = 'numbers.txt'
+
+numbers = []
+
+with open(filename, 'r') as file:
+
+    for line in file:
+
+                numbers.append(float(line.strip()))
+
+average = sum(numbers) / len(numbers)
+
+print(f'Mean of the numbers: {average}')
