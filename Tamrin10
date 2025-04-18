@@ -1,0 +1,16 @@
+filename = 'numbers.txt'
+numbers = []
+try:
+    with open(filename, 'r') as file:
+
+        for line in file:
+                       numbers.append(float(line.strip()))
+    if numbers:
+                average = sum(numbers) / len(numbers)
+                print(f'Mean of the numbers: {average}')
+    else:
+        print('The file is empty.')
+except FileNotFoundError:
+    print(f'File not found: {filename}')
+except ValueError:
+    print('Error: One or more lines in the file could not be converted to a number.')
