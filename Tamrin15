@@ -1,0 +1,51 @@
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+def simulate_bacteria_growth(threshold, initial_count=1, days=100):
+
+    count = initial_count
+
+    counts = []
+
+    
+
+    for day in range(days):
+
+        if count >= threshold:
+
+            break
+
+        counts.append(count)
+
+        count *= 2
+
+        if np.random.rand() < 0.25:
+
+            count -= 1
+
+    return counts, day
+
+def plot_growth(counts):
+
+    plt.plot(counts)
+
+    plt.xlabel('Days')
+
+    plt.ylabel('Number of Bacteria')
+
+    plt.title('Bacteria Growth Over Time')
+
+    plt.yscale('log')
+
+    plt.grid()
+
+    plt.show()
+
+threshold = 1000000
+
+counts, days_taken = simulate_bacteria_growth(threshold)
+
+plot_growth(counts)
+
+print(f'Days to reach {threshold}: {days_taken}')
