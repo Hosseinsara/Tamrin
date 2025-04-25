@@ -1,0 +1,71 @@
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+def predator_prey_simulation(wolves, deers, days):
+
+    wolf_population = []
+
+    deer_population = []
+
+    
+
+    for day in range(days):
+
+        if deers <= 0:
+
+            break
+
+        wolf_population.append(wolves)
+
+        deer_population.append(deers)
+
+        
+
+        new_wolves = wolves + (0.1 * wolves * deers) - (0.05 * wolves)
+
+        new_deers = deers + (0.1 * deers) - (0.1 * wolves)
+
+        
+
+        wolves = max(0, new_wolves)
+
+        deers = max(0, new_deers)
+
+    
+
+    return wolf_population, deer_population
+
+
+
+def plot_population(wolf_population, deer_population):
+
+    plt.plot(wolf_population, label='Wolves')
+
+    plt.plot(deer_population, label='Deers')
+
+    plt.xlabel('Days')
+
+    plt.ylabel('Population')
+
+    plt.title('Predator-Prey Simulation')
+
+    plt.legend()
+
+    plt.grid()
+
+    plt.show()
+
+
+
+initial_wolves = 50
+
+initial_deers = 200
+
+days = 100
+
+
+
+wolf_population, deer_population = predator_prey_simulation(initial_wolves, initial_deers, days)
+
+plot_population(wolf_population, deer_population)
