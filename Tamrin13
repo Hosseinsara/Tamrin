@@ -1,0 +1,9 @@
+import numpy as np
+mu = 1019 
+sigma = 209 
+passing_score = 820  
+num_samples = 100000
+scores = np.random.normal(mu, sigma, num_samples)
+num_below_passing = np.sum(scores < passing_score)
+percent_not_qualified = (num_below_passing / num_samples) * 100
+print(f"درصد داوطلبانی که واجد شرایط نمی‌شوند: {percent_not_qualified:.2f}%")
