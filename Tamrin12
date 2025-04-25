@@ -1,0 +1,8 @@
+import scipy.stats as stats
+mu = 1019  
+sigma = 209 
+passing_score = 820  
+z_score = (passing_score - mu) / sigma
+percent_below_passing = stats.norm.cdf(z_score)
+percent_not_qualified = (1 - percent_below_passing) * 100
+print(f"درصد داوطلبانی که واجد شرایط نمی‌شوند: {percent_not_qualified:.2f}%")
