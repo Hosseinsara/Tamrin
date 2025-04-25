@@ -1,0 +1,29 @@
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+from scipy.stats import norm
+
+mu = 0       
+
+sigma = 1 
+
+x = np.linspace(mu - 4*sigma, mu + 4*sigma, 1000)
+
+pdf = norm.pdf(x, mu, sigma)
+
+plt.figure(figsize=(10, 6))
+
+plt.plot(x, pdf, label='Gaussian PDF', color='blue')
+
+plt.title('Gaussian Probability Density Function')
+
+plt.xlabel('x')
+
+plt.ylabel('Probability Density')
+
+plt.grid(True)
+
+plt.legend()
+
+plt.show()
