@@ -1,0 +1,37 @@
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+def draw_islamic_pattern():
+
+    fig, ax = plt.subplots(figsize=(8, 8))
+
+    ax.set_xlim(-1, 1)
+
+    ax.set_ylim(-1, 1)
+
+    num_circles = 12
+
+    angles = np.linspace(0, 2 * np.pi, num_circles, endpoint=False)
+
+    for angle in angles:
+
+        circle = plt.Circle((0, 0), 0.8, color='cyan', fill=False, linewidth=2)
+
+        ax.add_artist(circle)
+
+        for i in range(1, 5):
+
+            r = i * 0.2
+
+            ax.add_artist(plt.Circle((r * np.cos(angle), r * np.sin(angle)), 0.05, color='orange', fill=True))
+
+    ax.set_aspect('equal')
+
+    ax.axis('off')
+
+    plt.title('Islamic Geometric Pattern', fontsize=16)
+
+    plt.show()
+
+draw_islamic_pattern()
