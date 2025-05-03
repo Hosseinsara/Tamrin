@@ -1,0 +1,20 @@
+def is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+def k_th_prime_after_n(n, k):
+    count = 0
+    current = n + 1  
+    while count < k:
+        if is_prime(current):
+            count += 1
+            if count == k:
+                return current
+        current += 1
+n = 5
+k = 3
+result = k_th_prime_after_n(n, k)
+print(f"{k}امین عدد عدداول بعد از {n} برابر است با: {result}")
