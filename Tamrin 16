@@ -1,0 +1,13 @@
+class Student:
+    def __init__(self, student_id, national_id, gpa):
+        self.student_id = student_id
+        self.national_id = national_id
+        self.gpa = gpa
+    def reserve_food(self, meal):
+        print(f"{meal} has been reserved for student {self.student_id}.")
+    def select_courses(self, courses):
+        selected_courses = ", ".join(courses)
+        print(f"Student {self.student_id} has selected: {selected_courses}")
+student1 = Student(student_id="123456", national_id="9876543210", gpa=17.5)
+student1.reserve_food("Chicken Rice")
+student1.select_courses(["Advanced Programming", "Data Structures", "Database Systems"])
