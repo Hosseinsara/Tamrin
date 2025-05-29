@@ -1,0 +1,43 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+n = int(input())
+m = int(input())
+p = int(input())
+
+A = np.zeros((n, n))
+B = np.zeros((n, m))
+C = np.zeros((p, n))
+D = np.zeros((p, m))
+
+for i in range(n):
+    A[i] = list(map(float, input().split()))
+
+for i in range(n):
+    B[i] = list(map(float, input().split()))
+
+for i in range(p):
+    C[i] = list(map(float, input().split()))
+
+D = np.array(list(map(float, input().split()))).reshape((p, m))
+
+def model(x, t, A, B, u):
+    return np.dot(A, x) + np.dot(B, u)
+
+t = np.linspace(0, 10, 100)
+u = np.zeros((m, len(t)))
+x0 = np.zeros(n)
+x = odeint(model, x0, t, args=(A, B, u))
+y = np.dot(C, x.T) + D @ u
+
+plt.figure()
+for i in range(p):
+    plt.plot(t, y[i], label=f'خروجی {i+1}')
+
+plt.title('پاسخ سیستم SISO')
+plt.xlabel('زمان (s)')
+plt.ylabel('خروجی')
+plt.legend()
+plt.grid()
+plt.show()
