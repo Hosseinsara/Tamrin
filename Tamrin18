@@ -1,0 +1,65 @@
+class Food:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+class Worker:
+    def __init__(self, name, position):
+        self.name = name
+        self.position = position
+
+class Table:
+    def __init__(self, number, seats):
+        self.number = number
+        self.seats = seats
+        self.is_occupied = False
+
+class Restaurant:
+    def __init__(self):
+        self.menu = []
+        self.workers = []
+        self.tables = []
+        self.total_income = 0
+
+    def add_food(self, food):
+        self.menu.append(food)
+
+    def add_worker(self, worker):
+        self.workers.append(worker)
+
+    def add_table(self, table):
+        self.tables.append(table)
+
+    def serve_food(self, food_name, table_number):
+        for food in self.menu:
+            if food.name == food_name:
+                self.total_income += food.price
+                print(f'Serving {food.name} to table {table_number}')
+                return
+        print('Food not found')
+
+    def report_income(self):
+        print(f'Total income: ${self.total_income}')
+
+# Create restaurant
+restaurant = Restaurant()
+
+# Add foods
+restaurant.add_food(Food('Pizza', 10))
+restaurant.add_food(Food('Pasta', 8))
+restaurant.add_food(Food('Salad', 5))
+
+# Add workers
+restaurant.add_worker(Worker('Alice', 'Chef'))
+restaurant.add_worker(Worker('Bob', 'Waiter'))
+
+# Add tables
+for i in range(1, 21):
+    restaurant.add_table(Table(i, 4))
+
+# Serve food
+restaurant.serve_food('Pizza', 1)
+restaurant.serve_food('Salad', 2)
+
+# Report income
+restaurant.report_income()
