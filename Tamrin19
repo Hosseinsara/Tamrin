@@ -1,0 +1,62 @@
+import turtle
+import random
+
+class Shape:
+    def __init__(self, turtle_obj, shape_type):
+        self.turtle = turtle_obj
+        self.shape_type = shape_type
+        self.size = random.randint(20, 50)
+        self.turtle.shape(shape_type)
+        self.turtle.shapesize(self.size / 20)
+        self.turtle.penup()
+        self.turtle.goto(random.randint(-200, 200), random.randint(-200, 200))
+        self.turtle.setheading(random.randint(0, 360))
+        self.speed = random.uniform(1, 3)
+
+    def move(self):
+        self.turtle.forward(self.speed)
+        if abs(self.turtle.xcor()) > 300 or abs(self.turtle.ycor()) > 300:
+            self.turtle.setheading(random.randint(0, 360))
+            self.speed *= 0.8
+            return True
+        return False
+
+class Game:
+    def __init__(self):
+        self.shapes = []
+        self.screen = turtle.Screen()
+        self.screen.setup(width=600, height=600)
+        self.screen.tracer(0)
+
+        shape_types = ['triangle', 'square', 'circle']
+        for _ in range(10):
+            shape_type = random.choice(shape_types)
+            new_turtle = turtle.Turtle()
+            shape = Shape(new_turtle, shape_type)
+            self.shapes.append(shape)
+
+    def check_collisions(self):
+        to_remove = []
+        for i in range(len(self.shapes)):
+            for j in range(i + 1, len(self.shapes)):
+                if self.shapes[i].turtle.distance(self.shapes[j].turtle) < (self.shapes[i].size + self.shapes[j].size) / 2:
+                    to_remove.append(self.shapes[i])
+                    to_remove.append(self.shapes[j])
+
+        for shape in to_remove:
+            if shape in self.shapes:
+                shape.turtle.hideturtle()
+                self.shapes.remove(shape)
+
+    def run(self):
+        while self.shapes:
+            for shape in self.shapes:
+                if shape.move():
+                    shape.turtle.hideturtle()
+            self.check_collisions()
+            self.screen.update()
+
+if __name__ == "__main__":
+    game = Game()
+    game.run()
+    turtle.done()
